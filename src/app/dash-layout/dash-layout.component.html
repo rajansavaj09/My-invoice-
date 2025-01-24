@@ -1,0 +1,962 @@
+<app-navbar></app-navbar>
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" style="margin-left: 2px;">
+<div class="invoice-editor d-flex col-12">
+  
+  <div class="invoice" style="width: 80%;">
+      <div class="row">
+        <div class="col-md-8">
+          <label for="logo-upload" class="upload-box">
+            <span class="logoName" *ngIf="!previewImage">+ Add Your Logo</span>
+            <img *ngIf="previewImage" [src]="previewImage" alt="Logo Preview" />
+            <input
+              type="file"
+              id="logo-upload"
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              hidden
+            />
+          </label>
+        </div>
+
+        <div class="col-md-4">
+          <div class="title">
+            <input
+              type="type"
+              class="form-control invoice-editor title input-label input-label text-dark ng-pristine ng-valid ng-touched"
+              tabindex="10"
+              formControlName="type"
+            />
+            <div class="subtitle">
+              <div class="input-group input-group-sm">
+                <span class="input-group-text input-border">#</span>
+                <input
+                  class="form-control border-start-0 ps-0 ng-pristine ng-valid ng-touched"
+                  type=""
+                  tabindex="11"
+                  formControlName="invoiceNo"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="contact">
+                <div class="value">
+                  <div class="expandingText" style="position: relative">
+                    <textarea
+                      class="form-control form-control-sm ng-pristine ng-untouched expanding-init ng-invalid ng-invalid-required"
+                      placeholder="Who is this from?"
+                      formControlName="formName"
+                      tabindex="15"
+                      required=""
+                      expanding-textarea=""
+                      style="position: absolute; height: 100%; resize: none"
+                    ></textarea>
+                    <pre
+                      class="textareaClone"
+                      style="
+                        visibility: hidden;
+                        border: 0.666667px solid;
+                        white-space: pre-wrap;
+                        line-height: 19.5px;
+                        text-decoration: none solid rgb(30, 32, 34);
+                        font-size: 13px;
+                        font-family: Inter, sans-serif;
+                        text-align: start;
+                        overflow-wrap: break-word;
+                        padding: 8px 16px;
+                        margin-bottom: 0px;
+                      "
+                    ><div> </div></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="contact pt-3">
+                <div class="theme-label mb-1">
+                  <input
+                    type="text"
+                    class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                    formControlName="labelBillToMe"
+                    tabindex="16"
+                  />
+                </div>
+                <div class="value">
+                  <div class="expandingText" style="position: relative">
+                    <textarea
+                      class="form-control form-control-sm ng-pristine ng-untouched expanding-init ng-invalid ng-invalid-required"
+                      placeholder="Who is this to?"
+                      formControlName="WhoIsThisToValue"
+                      tabindex="17"
+                      required=""
+                      expanding-textarea=""
+                      style="position: absolute; height: 100%; resize: none"
+                    ></textarea>
+                    <pre
+                      class="textareaClone"
+                      style="
+                        visibility: hidden;
+                        border: 0.666667px solid;
+                        white-space: pre-wrap;
+                        line-height: 19.5px;
+                        text-decoration: none solid rgb(30, 32, 34);
+                        font-size: 13px;
+                        font-family: Inter, sans-serif;
+                        text-align: start;
+                        overflow-wrap: break-word;
+                        padding: 8px 16px;
+                        margin-bottom: 0px;
+                      "
+                    ><div> </div></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="contact pt-3">
+                <div class="theme-label mb-1">
+                  <input
+                    type="text"
+                    class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                    formControlName="labelShipTo"
+                    tabindex="18"
+                  />
+                </div>
+                <div class="value">
+                  <div class="expandingText" style="position: relative">
+                    <textarea
+                      class="form-control form-control-sm ng-pristine ng-untouched ng-valid expanding-init"
+                      placeholder="(optional)"
+                      formControlName="optionalValue"
+                      tabindex="19"
+                      expanding-textarea=""
+                      style="position: absolute; height: 100%; resize: none"
+                    ></textarea>
+                    <pre
+                      class="textareaClone"
+                      style="
+                        visibility: hidden;
+                        border: 0.666667px solid;
+                        white-space: pre-wrap;
+                        line-height: 19.5px;
+                        text-decoration: none solid rgb(30, 32, 34);
+                        font-size: 13px;
+                        font-family: Inter, sans-serif;
+                        text-align: start;
+                        overflow-wrap: break-word;
+                        padding: 8px 16px;
+                        margin-bottom: 0px;
+                      "
+                    ><div> </div></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="invoice-details pt-3">
+            <div class="input-group addon-input">
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-valid ng-touched"
+                type="text"
+                formControlName="date"
+                tabindex="20"
+              />
+              <div class="input-group-addon">
+                <input
+                  class="form-control form-control-sm datepicker date ng-pristine ng-untouched ng-valid hasDatepicker"
+                  type="date"
+                  formControlName="DateValue"
+                  tabindex="21"
+                  date-picker=""
+                />
+              </div>
+            </div>
+
+            <div class="input-group addon-input mt-1">
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="paymentTerms"
+                tabindex="22"
+              />
+              <div class="input-group-addon">
+                <input
+                  class="form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                  type="text"
+                  formControlName="paymentTermsValue"
+                  tabindex="23"
+                />
+              </div>
+            </div>
+
+            <div
+              class="input-group addon-input mt-1"
+              ng-show="document.type === 'invoice'"
+            >
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="dueDate"
+                tabindex="24"
+              />
+              <div class="input-group-addon">
+                <input
+                  class="form-control form-control-sm datepicker due-date ng-pristine ng-untouched ng-valid hasDatepicker"
+                  type="text"
+                  formControlName="dueDateValue"
+                  tabindex="25"
+                  date-picker=""
+                  id="dp1736343666743"
+                />
+              </div>
+            </div>
+
+            <div
+              class="input-group addon-input mt-1"
+              ng-hide="document.type == 'purchase_order'"
+            >
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="poNumber"
+                tabindex="26"
+              />
+              <div class="input-group-addon">
+                <input
+                  class="form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                  type="text"
+                  formControlName="poNumberValue"
+                  tabindex="27"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="items-holder holder">
+          <div class="items-table-header rounded-1 bg-dark mb-1">
+            <div class="amount">
+              <div class="theme-label bordered">
+                <input
+                  type="text"
+                  style="text-align: right"
+                  class="input-label form-control form-control-sm text-light ng-pristine ng-untouched ng-valid"
+                  formControlName="labelAmount"
+                  tabindex="31"
+                />
+              </div>
+            </div>
+
+            <div class="unit_cost">
+              <div class="theme-label bordered">
+                <input
+                  type="text"
+                  class="input-label form-control form-control-sm text-light ng-pristine ng-untouched ng-valid ng-valid-required"
+                  required=""
+                  formControlName="labelCost"
+                  tabindex="30"
+                />
+              </div>
+            </div>
+
+            <div class="quantity">
+              <div class="theme-label bordered">
+                <input
+                  type="text"
+                  class="input-label form-control form-control-sm text-light ng-pristine ng-untouched ng-valid"
+                  formControlName="labelQuantity"
+                  tabindex="29"
+                />
+              </div>
+            </div>
+
+            <div class="name">
+              <div class="theme-label bordered">
+                <input
+                  type="text"
+                  class="input-label form-control form-control-sm text-light ng-pristine ng-untouched ng-valid"
+                  formControlName="labelItemName"
+                  tabindex="28"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            formArrayName="items"
+            class="mb-1 row"
+            *ngFor="let item of items.controls; let i = index"
+          >
+            <div class="mb-1" [formGroupName]="i" class="">
+              <table class="w-100">
+                <tr>
+                  <td class="d-flex">
+                    <div class="" style="width: 66%; margin-right: 4px">
+                      <input
+                        type="text"
+                        class="form-control form-control-sm ng-pristine ng-valid expanding-init ng-touched"
+                        formControlName="description"
+                        placeholder="Description of item/service..."
+                      />
+                    </div>
+
+                    <div class="" style="width: 9%; margin-right: 4px">
+                      <input
+                        type="number"
+                        step="any"
+                        class="form-control form-control-sm ng-pristine ng-untouched ng-valid ng-valid-required"
+                        formControlName="quantity"
+                        (input)="calculateTotals()"
+                        min="1"
+                      />
+                    </div>
+
+                    <div
+                      class="unit_cost"
+                      style="width: 12%; margin-right: 4px"
+                    >
+                      <div class="input-group input-group-sm">
+                        <div class="input-group-text input-border">Rs</div>
+                        <input
+                          class="form-control border-start-0 ps-2 ng-touched"
+                          type="number"
+                          tabindex="43"
+                          formControlName="rate"
+                          (input)="calculateTotals()"
+                          required="required"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- <div class="amount" style="width:14%; margin-right: 3px;">
+                 <div class="d-flex">
+                <input
+                  type="text"
+                  class="form-control  form-control-sm ng-pristine ng-untouched ng-valid"
+                  disabled/>
+                <div class="col-md-1 text-end delete-row">
+                <div>
+                  <h1 class="bi bi-x cancel-Button" type="button"  (click)="removeItem(i)">  </h1>
+                </div>
+              </div>
+                </div>
+              </div> -->
+
+                    <div class="amount" style="width: 13%; margin-right: 4px">
+                      <div class="d-flex">
+                        <input
+                          class=""
+                          style="
+                            width: 85%;
+                            outline: none;
+                            border: none;
+                            text-align: right;
+                          "
+                          class="form-control input-label form-control form-control-sm ps-2"
+                          [value]="
+                            calculateItemAmount(item.value.quantity, item.value.rate)"
+                          disabled
+                        />
+                        <!-- <input type="text"
+                      class="form-control form-control-sm ng-pristine ng-untouched ng-valid" disabled/> -->
+
+                        <div
+                          class="col-md-1 text-end delete-row"
+                          style="margin: 0px 5px 0px 5px"
+                        >
+                          <!-- <i (click)="removeItem(i)" class="fas fa-times cancel-Button" ></i> -->
+                          <h1
+                            class="bi bi-x cancel-Button"
+                            type="button"
+                            (click)="removeItem(i)"
+                          ></h1>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary mb-3"
+            (click)="addItem()"
+          >
+            + Line Item
+          </button>
+
+          
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="invoice-footer">
+              <div class="notes-holder">
+                <div class="theme-label mb-1">
+                  <input
+                    type="text"
+                    class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                    formControlName="labelNotes"
+                    tabindex="1014"
+                  />
+                </div>
+                <div class="value">
+                  <div class="expandingText" style="position: relative">
+                    <textarea
+                      class="notes form-control form-control-sm ng-pristine ng-untouched ng-valid expanding-init"
+                      placeholder="Notes - any relevant information not already covered"
+                      formControlName="valueNotes"
+                      tabindex="1015"
+                      expanding-textarea=""
+                      style="position: absolute; height: 100%; resize: none"
+                    ></textarea>
+                    <pre
+                      class="textareaClone"
+                      style="
+                        visibility: hidden;
+                        border: 0.666667px solid;
+                        white-space: pre-wrap;
+                        line-height: 19.5px;
+                        text-decoration: none solid rgb(30, 32, 34);
+                        font-size: 13px;
+                        font-family: Inter, sans-serif;
+                        overflow-wrap: break-word;
+                        padding: 8px 16px;
+                        margin-bottom: 0px;
+                      "
+                    ><div> </div></pre>
+                  </div>
+                </div>
+              </div>
+              <div class="terms-holder mt-3">
+                <div class="theme-label mb-1">
+                  <input
+                    type="text"
+                    class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                    formControlName="labelTerms"
+                    tabindex="1016"
+                  />
+                </div>
+                <div class="value">
+                  <div class="expandingText" style="position: relative">
+                    <textarea
+                      class="terms form-control form-control-sm ng-pristine ng-untouched ng-valid expanding-init"
+                      placeholder="Terms and conditions - late fees, payment methods, delivery schedule"
+                      formControlName="valueTerms"
+                      tabindex="1017"
+                      expanding-textarea=""
+                      style="position: absolute; height: 100%; resize: none"
+                    ></textarea>
+                    <pre
+                      class="textareaClone"
+                      style="
+                        visibility: hidden;
+                        border: 0.666667px solid;
+                        white-space: pre-wrap;
+                        line-height: 19.5px;
+                        text-decoration: none solid rgb(30, 32, 34);
+                        font-size: 13px;
+                        font-family: Inter, sans-serif;
+                        overflow-wrap: break-word;
+                        padding: 8px 16px;
+                        margin-bottom: 0px;
+                      "
+                    ><div>no </div></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <!-- Subtotal -->
+            <div class="input-group addon-input">
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="labelSubtotal"
+               
+              />
+              <div class="input-group-addon value deleteable ">
+                <span>{{ subtotal | currency : "INR" }}</span>
+              </div>
+            </div>
+
+            <!-- Discounts -->
+            <div
+              class="input-group addon-input mt-1"
+              ng-show="!!document.fields.discounts"
+            >
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="labelDiscount"
+                tabindex="1002"
+              />
+              <div class="input-group-addon input deleteable">
+                <div class="ng-pristine ng-untouched ng-valid ng-isolate-scope">
+                  <div class="input-group input-group-sm">
+                    <!-- ngIf: !isRate --><input
+                      class="form-control ng-pristine ng-untouched ng-valid border-end-0 pe-2 ng-valid-required" 
+                      type="number"
+                      placeholder="0"
+                      formControlName="labelDiscount"
+                      formControlName="valueDiscount"
+                      (input)="calculateTotals()"
+                    /><!-- ngIf: !!isRate -->
+                    <div
+                      class="input-group-text ps-2 pe-2 input-border ng-scope"
+                      ng-if="!!isRate"
+                    >
+                      %
+                    </div>
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary input-border ng-scope"
+                      ng-click="toggleRate()"
+                      ng-if="hasSelector"
+                    >
+                      <span class="fas fa-repeat"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="delete">
+                <button
+                  type="button"
+                  class="btn btn-link"
+                  ng-click="removeDiscount()"
+                >
+                  <span class="fas fa-times"></span>
+                </button>
+              </div> -->
+            </div>
+
+            <!-- Tax -->
+            <div
+              class="input-group addon-input mt-1"
+              ng-show="!!document.fields.tax"
+            >
+              <!-- <div class="delete">
+                <button
+                  type="button"
+                  class="btn btn-link"
+                  ng-click="removeTax()"
+                >
+                  <span class="fas fa-times"></span>
+                </button>
+              </div> -->
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="labelTax"
+                />
+              <div class="input-group-addon input deleteable">
+                <div
+                  has-selector="true"
+                  class="ng-pristine ng-untouched ng-valid ng-isolate-scope">
+                  <div class="input-group input-group-sm">
+                    <!-- ngIf: !isRate --><input
+                      class="form-control ng-pristine ng-untouched ng-valid border-end-0 pe-2 ng-valid-required"
+                      ng-class="{
+                        'border-start-0 ps-2': !isRate,
+                        'border-end-0 pe-2': isRate
+                      }"
+                      type="number"
+                      placeholder="0"
+                      formControlName="valueTax"
+                      (input)="calculateTotals()"
+                      autocomplete="off"
+                      tabindex="1005" 
+                    />
+                    <div class="input-group-text input-border ps-2 pe-2 ng-scope">
+                      %
+                    </div>
+                    <button  type="button" class="btn btn-outline-secondary input-border ng-scope">
+                      <span class="fas fa-repeat"></span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shipping -->
+            <div
+              class="input-group addon-input mt-1 ng-hide"
+              ng-show="!!document.fields.shipping"
+            >
+              <!-- <div class="delete">
+                <button
+                  type="button"
+                  class="btn btn-link"
+                  ng-click="removeShipping()"
+                >
+                  <span class="fas fa-times"></span>
+                </button>
+              </div> -->
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="labelShipping"
+              />
+              <div class="input-group-addon input deleteable">
+                <div
+                  currency="document.currency"
+                  class="ng-pristine ng-untouched ng-valid ng-isolate-scope">
+                  <div class="input-group input-group-sm">
+                    <!-- ngIf: !isRate -->
+                    <div
+                      class="input-group-text input-border pe-2 ps-2 ng-binding ng-scope"
+                      ng-if="!isRate">
+                      Rs
+                    </div>
+                    <!-- end ngIf: !isRate --><input
+                      class="form-control ng-pristine ng-untouched ng-valid border-start-0 ps-2 ng-valid-required"
+                      ng-class="{
+                        'border-start-0 ps-2': !isRate,
+                        'border-end-0 pe-2': isRate
+                      }"
+                      type="number"
+                      placeholder="0"
+                      formControlName="valueShipping"
+                      (input)="calculateTotals()"
+                    /><!-- ngIf: !!isRate --><!-- ngIf: hasSelector -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- disable  -->
+            <!-- <div class="add-rates mt-1">
+              <button
+                type="button"
+                class="btn btn-link btn-sm ng-binding ng-hide"
+                ng-click="addDiscount()"
+                ng-hide="!!document.fields.discounts"
+                tabindex="1008"
+              >
+                <span class="fas fa-plus"></span>
+                Discount
+              </button>
+              <button
+                type="button"
+                class="btn btn-link btn-sm ng-binding ng-hide"
+                ng-click="addTax()"
+                ng-hide="!!document.fields.tax"
+                tabindex="1009"
+              >
+                <span class="fas fa-plus"></span>
+                Tax
+              </button>
+              <button
+                type="button"
+                class="btn btn-link btn-sm ng-binding"
+                ng-click="addShipping()"
+                ng-hide="!!document.fields.shipping"
+                tabindex="1010"
+              >
+                <span class="fas fa-plus"></span>
+                Shipping
+              </button>
+            </div> -->
+
+            <!-- Total -->
+            <div class="input-group addon-input">
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                formControlName="labelTotal"
+                type="text"
+              />
+              <div class="input-group-addon value deleteable ng-binding">
+                <span>{{ total | currency : "INR" }}</span>
+              </div>
+            </div>
+            
+            <!-- Amount Paid -->
+            <div class="input-group addon-input mt-1">
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="labelAmountPaid"
+              />
+              <div class="input-group-addon input deleteable">
+                <div class="ng-pristine ng-untouched ng-valid ng-isolate-scope">
+                  <div class="input-group input-group-sm ">
+                    <div
+                      class="input-group-text input-border pe-2 ps-2 ng-binding ng-scope"
+                      ng-if="!isRate">
+                      Rs
+                    </div>
+                    <!-- end ngIf: !isRate --><input
+                      class="form-control ng-pristine ng-untouched ng-valid border-start-0 ps-2 ng-valid-required"
+                      placeholder="0"
+                      type="number"
+                      currency="document.currency"
+                      formControlName="valueAmountPaid"
+                      (input)="calculateTotals()"
+                    /><!-- ngIf: !!isRate --><!-- ngIf: hasSelector -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Balance -->
+            <div
+              class="input-group addon-input mt-1">
+              <input
+                class="input-label form-control form-control-sm ng-pristine ng-untouched ng-valid"
+                type="text"
+                formControlName="labelBalanceDue"
+              />
+              <div class="input-group-addon value deleteable ng-binding">     
+                <span>{{ balanceDue | currency : "INR" }}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="primary">Create invoice</button>
+  </div>
+
+  <div class="col-md-2" style="margin: 30px 0px 0px 10px;">
+    <div class="d-grid gap-2">
+      <button type="button" class="btn btn-primary" ng-click="saveAndDownloadPDF()">
+          <span ng-show="cloudMode">
+          <!-- <span ng-show="isExisting" class="ng-binding ng-hide">Save</span>
+          <span ng-hide="isExisting" class="ng-binding">Create</span></span>
+          <span ng-hide="cloudMode" class="ng-binding ng-hide"> -->
+          <i class="fas fa-arrow-to-bottom"></i> Download</span>
+      </button>
+  </div>
+  </div>
+
+  </div>
+
+
+  <!-- <div class="invoice-container col-12" id="invoices">
+    <div class="d-flex justify-content-between" style="padding-bottom: 40px;margin: 0px 8px;">
+      <div> 
+        <div>
+          <img [src]="invoiceForm.value.imagePath"  class="logo" />
+          <img src="{{ invoiceForm.value.imagePath}}" alt="Logo" class="logo" />
+        </div>
+        <strong style="margin-top: 13px;
+        margin-left: 20px;font-size: small;">
+          {{ invoiceForm.value.formName }}
+        </strong>
+      </div>
+  
+      <div style="text-align: right;" class=" align-items-center d-flex">
+        <div style="height: fit-content;">
+          <label class="labels label-color">{{ invoiceForm.value.type }}</label> 
+        <div class="label-color" style="font-size: 16px;  font-family: Arial, sans-serif;" >
+          # {{ invoiceForm.value.invoiceNo }}
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="col-12 d-flex" style="margin-bottom: 20px;">
+      <div class="col-6 d-flex" style="margin-left: 20px;">
+        <div class="col-6">
+          <div class="label-color" >{{ invoiceForm.value.labelBillToMe }}: </div>
+          <strong style="font-size: small; margin-top: 1px;">
+            {{ invoiceForm.value.WhoIsThisToValue }}</strong>
+        </div>
+        <div class="col-6">
+          <div class="label-color" >{{ invoiceForm.value.labelShipTo }}: </div>
+          <strong style="font-size: small; margin-top: 1px;">
+            {{ invoiceForm.value.optionalValue }}</strong>
+        </div>
+      </div>
+
+      <div class="col-6 ">
+        
+        <div class="col-6 data d-flex justify-content-end">
+          <div class="d-flex " >
+            <div class="col-12" style="text-align: right;">
+              <div class="label-formant label-color">{{ invoiceForm.value.date }}:</div>
+              <div class="label-formant label-color">{{ invoiceForm.value.paymentTerms }}:</div>
+              <div class="label-formant label-color">{{ invoiceForm.value.dueDate }}:</div>
+              <div class="label-formant label-color">{{ invoiceForm.value.poNumber }}:</div>
+            </div> 
+
+            <div class="col-10" style="text-align: right; margin-right: 40px;">
+              <div class="color label-formant" style="margin-right: 10px;">{{ invoiceForm.value.DateValue }}</div> 
+              <div class="color label-formant" style="margin-right: 10px;">{{ invoiceForm.value.paymentTermsValue }}</div> 
+              <div class="color label-formant" style="margin-right: 10px;">{{ invoiceForm.value.dueDateValue }}</div> 
+              <div class="color label-formant" style="margin-right: 10px;">{{ invoiceForm.value.poNumberValue }}</div> 
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end" style="text-align: right;border-radius: 5px;  margin-right: 40px;background-color: #f0f0f0;">
+          <div class="col-12 d-flex" style="margin-right: -25px;border-radius: 5px;background-color: #f0f0f0;">
+            <strong class="col-6 Balance" style="margin-left: -5px;">
+              {{ invoiceForm.value.labelBalanceDue }}:
+            </strong>
+            <strong class="col-6 Balance" style="margin-bottom: 5px;margin-left: -20px;">
+               &#8377; {{ invoiceForm.value.valueBalanceDue }}
+            </strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-12 d-flex">
+        <table class="item-table">
+          <thead>
+            <tr class="" style="border-color: black;">
+              <th class="" style="width: 54%;padding-left: 20px; border-radius: 5px 0px 0px 5px;">{{ invoiceForm.value.labelItemName }}</th>
+              <th class="" style="width: 11%;">{{ invoiceForm.value.labelQuantity }}</th>
+              <th class="" style="width: 13%;text-align: right;">{{ invoiceForm.value.labelCost }}</th>
+              <th class="" style="text-align: right;padding-right: 20px;width: 18%;border-radius: 0px 5px 5px 0px;">{{ invoiceForm.value.labelAmount }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+              <td class="p-font" style="padding-left: 20px">{{ item.value.description }}</td>
+              <td class="color" >{{ item.value.quantity }}</td>
+              <td class="color" style="text-align: right;width: 12%;" >{{ item.value.rate }}</td>
+              <td class="color" style="text-align: right;padding-right: 20px;"> &#8377;{{ calculateItemAmount(item.value.quantity, item.value.rate) }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div class="col-12 d-flex justify-content-end" style="margin-top: 40px;">
+        <div class="col-9 "style="text-align: right;margin-right: -40px;" >
+          <div class="label-formant label-color">{{ invoiceForm.value.labelSubtotal }}: </div>
+          <div class="label-formant label-color">{{ invoiceForm.value.labelDiscount}} ({{ invoiceForm.value.valueDiscount }}%): </div>
+          <div class="label-formant label-color">{{ invoiceForm.value.labelTax}} ({{ invoiceForm.value.valueTax }}%): </div>
+          <div class="label-formant label-color">{{ invoiceForm.value.labelShipping}}: </div>
+          <div class="label-formant label-color">{{ invoiceForm.value.labelTotal}}: </div>
+          <div class="label-formant label-color">{{ invoiceForm.value.labelAmountPaid}}: </div>
+        </div>
+
+        <div class="col-3" style="text-align: right; margin-right: 20px;">            
+          <div class="color label-formant"> &#8377; {{ invoiceForm.value.valueSubtotal }}</div>
+          <div class="color label-formant"> &#8377; {{ (invoiceForm.value.valueSubtotal * invoiceForm.value.valueDiscount) / 100 }}</div>
+          <div class="color label-formant"> &#8377; {{ (invoiceForm.value.valueSubtotal * (1 - invoiceForm.value.valueDiscount / 100) * invoiceForm.value.valueTax) / 100 }}</div>
+          <div class="color label-formant"> &#8377; {{ invoiceForm.value.valueShipping }}</div>
+          <div class="color label-formant"> &#8377; {{ invoiceForm.value.valueTotal }}</div>
+          <div class="color label-formant"> &#8377; {{ invoiceForm.value.valueAmountPaid }}</div>
+        </div>  
+    </div>
+
+    <div class="" style="margin-top: 20px;margin-left: 20px;">
+      <div class="">
+        <div class="label-color">{{ invoiceForm.value.labelNotes }}:</div> 
+        <div class="color" style="margin-top: 2px;">{{ invoiceForm.value.valueNotes }}</div>
+      </div>
+      <div style="margin-top: 20px;">
+        <div class="label-color">{{ invoiceForm.value.labelTerms }}:</div>
+        <div class="color" style="margin-top: 2px;"> {{ invoiceForm.value.valueTerms }}</div>
+      </div>
+    </div>
+  </div> -->
+  
+
+  <!-- <div class="invoice-container" id="invoices">
+    <div class="d-flex col-12 justify-content-between">
+      <div class="col-6"> 
+        <div>
+          <img src="{{ invoiceForm.value.imagePath}}" alt="Logo" class="logo" />
+        </div>
+        <div>
+          {{ invoiceForm.value.formName }}
+        </div>
+      </div>
+  
+      <div class="col-6">
+        <div>
+          <h1>{{ invoiceForm.value.type }}</h1> 
+        </div>
+        <div style="text-align: right;">
+          # {{ invoiceForm.value.invoiceNo }}
+        </div>
+  
+      </div>
+    </div>
+
+    <div class="header">
+      <img src="{{ invoiceForm.value.imagePath || 'default-logo.png' }}" alt="Logo" class="logo" />
+      <h1>INVOICE</h1>
+      <p># {{ invoiceForm.value.invoiceNo }}</p>
+    </div>
+  
+    <div class="details">
+      <div>
+        <p><strong>Bill To:</strong> {{ invoiceForm.value.WhoIsThisToValue }}</p>
+        <p><strong>Ship To:</strong> {{ invoiceForm.value.optionalValue }}</p>
+      </div>
+      <div>
+        <p><strong>Date:</strong> {{ invoiceForm.value.DateValue }}</p>
+        <p><strong>Payment Terms:</strong> {{ invoiceForm.value.paymentTermsValue }}</p>
+        <p><strong>Due Date:</strong> {{ invoiceForm.value.dueDateValue }}</p>
+        <p><strong>PO Number:</strong> {{ invoiceForm.value.poNumberValue }}</p>
+      </div>
+    </div>
+  
+    <div class="balance">
+      <h2>Balance Due:</h2>
+      <p>₹{{ invoiceForm.value.valueBalanceDue }}</p>
+    </div>
+  
+    <table class="item-table">
+      <thead>
+        <tr>
+          <th>{{ invoiceForm.value.labelItemName }}</th>
+          <th>{{ invoiceForm.value.labelQuantity }}</th>
+          <th>{{ invoiceForm.value.labelCost }}</th>
+          <th>{{ invoiceForm.value.labelAmount }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+          <td>{{ item.value.description }}</td>
+          <td>{{ item.value.quantity }}</td>
+          <td>₹{{ item.value.rate }}</td>
+          <td>₹{{ calculateItemAmount(item.value.quantity, item.value.rate) }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+  
+    <div class="totals">
+      <p>Subtotal: ₹{{ invoiceForm.value.valueSubtotal }}</p>
+      <p>Discount ({{ invoiceForm.value.valueDiscount }}%): ₹{{ (invoiceForm.value.valueSubtotal * invoiceForm.value.valueDiscount) / 100 }}</p>
+      <p>Tax ({{ invoiceForm.value.valueTax }}%): ₹{{ (invoiceForm.value.valueSubtotal * (1 - invoiceForm.value.valueDiscount / 100) * invoiceForm.value.valueTax) / 100 }}</p>
+      <p>Shipping: ₹{{ invoiceForm.value.valueShipping }}</p>
+      <p><strong>Total: ₹{{ invoiceForm.value.valueTotal }}</strong></p>
+      <p>Amount Paid: ₹{{ invoiceForm.value.valueAmountPaid }}</p>
+      <p><strong>Balance Due: ₹{{ invoiceForm.value.valueBalanceDue }}</strong></p>
+    </div>
+  
+    <div class="">
+      <p><strong>Notes:</strong> {{ invoiceForm.value.valueNotes }}</p>
+      <p><strong>Terms:</strong> {{ invoiceForm.value.valueTerms }}</p>
+    </div>
+  </div> -->
+  
+ 
+  
+</form>
+<button (click)="downloadPDF()">downloadPDF</button>
+<app-footer></app-footer>

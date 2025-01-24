@@ -1,0 +1,127 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="">
+    <div ng-controller="HistoryController" class="ng-scope">
+      <div
+        class="body border bg-white rounded rounded-4 shadow p-5 mx-auto mt-3">
+        <h1 class="ng-binding">History</h1>
+        <p class="lead ng-binding">
+          We automatically save invoices that you created recently to your
+          device. This is useful when you need to quickly make an edit to an
+          invoice.
+        </p>
+
+        <div class="row">
+          <div class="col-sm-6 pt-2">
+            <div class="search">
+              <div
+                class="input-group input-group-merge input-group-borderless input-group-hover-light navbar-input-group"
+              >
+                <div class="input-group-prepend input-group-text">
+                  <span class="fas fa-search"></span>
+                </div>
+                <input
+                  type="search"
+                  class="form-control ng-pristine ng-untouched ng-valid"
+                  ng-model="search"
+                  tabindex="2000"
+                />
+                <div
+                  class="input-group-append input-group-text ng-hide"
+                  ng-show="search"
+                >
+                  <a
+                    href=""
+                    ng-click="search=''"
+                    tabindex="2001"
+                    class="fas fa-times-circle"
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 pt-2 text-sm-end">
+            <button class="btn btn-white ng-binding" (click)="exportexcel()">
+              <span class="fas fa-arrow-to-bottom"></span>
+              Export
+            </button>
+            <a href="/dash-layout" class="btn btn-primary ng-binding">
+              New Invoice
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="fs-5 my-5 px-3 text-secondary ng-binding ng-hide"
+          ng-show="!invoices.length || !results.length"
+        >
+          No invoices found.
+        </div>
+
+        <div class="my-invoices table-responsive mt-3 mx-n5">
+          <table
+            class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table"
+          >
+            <thead class="thead-light">
+              <tr>
+                <th class="p-0"></th>
+                <th class="">Customer</th>
+                <th></th>
+                <th class="">Reference</th>
+                <th class="">Date</th>
+                <th class="">Due Date</th>
+                <th class="text-end">Total</th>
+                <th class="p-0"></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Detail of getInvoiceDetail"
+                ng-repeat="invoice in invoices | filter:search | orderBy:'!id' as results"
+                class="ng-scope"
+              >
+                <td>
+                  <a routerLink="/dash-layout/edit-invoice/{{Detail.id}}"
+                   class="btn btn-outline-secondary btn-sm ng-binding">
+                    View 
+                  </a>
+                </td>
+                <td class="ng-binding">{{Detail.WhoIsThisToValue}}</td>
+                <td class="ng-binding">{{Detail.type}}</td>
+                <td class="ng-binding">{{Detail.invoiceNo}}</td>
+                <td class="ng-binding">{{Detail.DateValue}}</td>
+                <td class="ng-binding">{{Detail.dueDateValue}}</td>
+                <td class="text-end">{{Detail.valueBalanceDue}}</td>
+                <td class="text-end">
+                  <button
+                  (click)="deleteInvoice(Detail.id)"
+                    class="btn btn-link text-danger"
+                  > 
+                  <span class="fas fa-trash"></span>
+                </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mt-5 text-danger fs-6 ng-binding">
+          <span class="fas fa-exclamation-triangle"></span>
+          These invoices are stored on your device only. Clearing your browser's
+          history will erase these invoices. We recommend hanging on to a copy
+          of each invoice you generate.
+        </p>
+
+        <div class="" ng-show="invoices.length > 0">
+          <button
+            class="btn btn-danger btn-sm ng-binding"
+            ng-click="clearAll()"
+          >
+            Erase Everything
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

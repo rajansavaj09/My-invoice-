@@ -1,0 +1,177 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="body border bg-white rounded rounded-4 shadow p-5 mx-auto mt-3">
+    <h1>
+      <a href="/" class="btn btn-white">
+        <span class="fas fa-arrow-left"></span>
+      </a>
+      {{ "helpPage.help" | translate }}
+    </h1>
+
+    <p class="lead">{{ "helpPage.helpDetails" | translate }}</p>
+
+    <section>
+      <h2 class="border-bottom pb-3 mb-5">
+        {{ "helpPage.invoiceGenerator" | translate }}
+      </h2>
+      <ol>
+        <li>
+          <strong>{{ "helpPage.instantInvoices1" | translate }}</strong
+          ><br />
+          {{ "helpPage.instantInvoices1-details" | translate }}
+        </li>
+        <li>
+          <strong>{{ "helpPage.instantInvoices2" | translate }}</strong
+          ><br />
+          {{ "helpPage.instantInvoices2-details" | translate }}
+        </li>
+        <li>
+          <strong>{{ "helpPage.instantInvoices3" | translate }}</strong
+          ><br />
+          {{ "helpPage.instantInvoices3-details" | translate }}
+        </li>
+        <li>
+          <strong>{{ "helpPage.instantInvoices4" | translate }}</strong
+          ><br />
+          {{ "helpPage.instantInvoices4-details" | translate }}
+        </li>
+      </ol>
+
+      <p>
+        {{ "helpPage.invoiceGenerator-paragraph" | translate }}
+      </p>
+    </section>
+
+    <section>
+      <h2 class="border-bottom pb-3 mb-5">
+        {{ "helpPage.titleInvoiceGenerator" | translate }}
+      </h2>
+
+      <h3>{{ "helpPage.makingInvoices" | translate }}</h3>
+      <p>{{ "helpPage.makingInvoices-paragraph-1" | translate }}</p>
+      <p>
+        <span class="fas fa-info-circle"></span>
+        {{ "helpPage.makingInvoices-paragraph-2" | translate }}
+      </p>
+
+      <h3>{{ "helpPage.sendingInvoices" | translate }}</h3>
+      <p>{{ "helpPage.sendingInvoices-paragraph" | translate }}</p>
+      <p>
+        <a href="/signup" class="btn btn-primary">
+          {{ "helpPage.learnMore" | translate }}
+        </a>
+      </p>
+
+      <h4>{{ "helpPage.payments" | translate }}</h4>
+      <p>
+        {{ "helpPage.payments-paragraph" | translate }}
+      </p>
+
+      <h3>{{ "helpPage.downloadingInvoices" | translate }}</h3>
+      <p>
+        {{ "helpPage.downloadingInvoices-paragraph1" | translate }}
+        <strong> {{ "helpPage.downloadInvoice" | translate }}</strong>
+        {{ "helpPage.downloadingInvoices-paragraph2" | translate }}
+        <strong>{{ "helpPage.editThisInvoice" | translate }}</strong>
+        {{ "helpPage.downloadingInvoices-paragraph3" | translate }}
+      </p>
+
+      <h4>{{ "helpPage.savingInvoices" | translate }}</h4>
+      <p>
+        {{ "helpPage.savingInvoices-paragraph1" | translate }}
+      </p>
+      <p>
+        {{ "helpPage.savingInvoices2-paragraph1" | translate }}
+        <a href="/history"> {{ "helpPage.history" | translate }}</a>
+        {{ "helpPage.savingInvoices2-paragraph2" | translate }}
+        <strong>{{ "helpPage.export" | translate }}</strong>
+        {{ "helpPage.savingInvoices2-paragraph3" | translate }}
+      </p>
+      <p>
+        {{"helpPage.savingInvoices3-paragraph1" | translate }}
+            <strong>{{"helpPage.x" | translate }}</strong>
+        {{"helpPage.savingInvoices3-paragraph2"| translate }} 
+            <strong>{{"helpPage.eraseEverything" | translate }}</strong>
+        {{"helpPage.savingInvoices3-paragraph3"| translate }}
+      </p>
+
+      <h3>{{"helpPage.customizingTemplate"| translate }} </h3>
+      <p>
+        {{"helpPage.customizingTemplate-paragraph1" | translate}}  
+        <strong>{{"helpPage.saveTemplate" | translate }} </strong>
+        {{"helpPage.customizingTemplate-paragraph2" | translate}}
+      </p>
+      <p>{{"helpPage.invoiceTemplateRemember" | translate}}</p>
+      <ul>
+        <li>{{"helpPage.fromAddress" | translate}}</li>
+        <li>{{"helpPage.logo" | translate}}</li>
+        <li>{{"helpPage.currency" | translate}}</li>
+        <li>{{"helpPage.terms" | translate}}</li>
+        <li>{{"helpPage.notes" | translate}}</li>
+        <li>{{"helpPage.fieldTitles" | translate}}</li>
+      </ul>
+
+      <h3>{{"helpPage.systemRequirements" | translate}} </h3>
+      <p>
+        {{"helpPage.systemRequirements-paragraph1" | translate}}
+      </p>
+      <ul>
+        <li> {{"helpPage.remember-1" | translate}} </li>
+        <li> {{"helpPage.remember-2" | translate}} </li>
+        <li> {{"helpPage.remember-3" | translate}} </li>
+        <li> {{"helpPage.remember-4" | translate}} </li>
+        <li> {{"helpPage.remember-5" | translate}} </li>
+      </ul>
+
+      <p>
+        {{"helpPage.systemRequirements-paragraph2" | translate}}
+      </p>
+      <ul>
+        <li> {{"helpPage.option1" | translate}}</li>
+        <li> {{"helpPage.option2" | translate}}</li>
+        <li> {{"helpPage.option3" | translate}}</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="border-bottom pb-3 mb-5">
+        {{"helpPage.title1" | translate}}
+        
+      </h2>
+      <h3> {{"helpPage.title2" | translate}}</h3>
+      <p>
+        {{"helpPage.paragraph1" | translate}}
+        <a href="/login">  {{"helpPage.paragraph2" | translate}} </a>.
+      </p>
+
+      <h3>{{"helpPage.downloadInvoiceFeature" | translate}}</h3>
+      <p>
+        {{"helpPage.downloadInvoiceFeature-paragraph1" | translate}}
+      </p>
+      <p>
+        {{"helpPage.downloadInvoiceFeature-paragraph2" | translate}}
+      </p>
+    </section>
+
+    <section>
+      <h2 class="border-bottom pb-3 mb-5">{{"helpPage.what'sNew" | translate}} </h2>
+      <p>
+        {{"helpPage.what'sNew-paragraph-1" | translate}}
+         <a href="/release-notes"> {{"helpPage.releaseNotes" | translate}} </a>
+        {{"helpPage.what'sNew-paragraph-2" | translate}}
+      </p>
+    </section>
+
+    <section>
+      <h2 class="border-bottom pb-3 mb-5"> {{"helpPage.invoiceGeneratorAPI" | translate}}</h2>
+      <p>
+        {{"helpPage.invoiceGeneratorAPI-paragraph-1" | translate}}
+      </p>
+      <p>
+        <a href="/developers" class="btn btn-primary">{{"helpPage.apiDocumentation" | translate}}  </a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+
+<div class="container px-0 px-md-3">
+  <div class="body border bg-white rounded-4 shadow p-5 mx-auto mt-md-3">
+    <div class="justify-content-center">
+      <!-- Header -->
+      <h1 class="mb-3 text-center">Settings</h1>
+      <p class="mb-5 text-muted text-center">
+        Manage your settings here, including how you want to get paid.
+      </p>
+
+      <!-- Invoicing Settings -->
+      <h2>Invoicing Settings</h2>
+      <p>
+        Next Invoice Number: <strong>5</strong>
+        <a href="/app/settings/edit" class="ms-3">
+          <span class="fas fa-edit"></span>
+        </a>
+      </p>
+
+      <!-- Payment Settings -->
+      <h2>Payment Settings</h2>
+      <h5>Add information to start accepting money</h5>
+      <p>
+        Invoice-Generator.com partners with Stripe to help you receive payments
+        and keep your personal bank and details secure.
+      </p>
+      <p>
+        <a href="/app/integrations/stripe/create" class="btn btn-primary">
+          Create an account
+        </a>
+      </p>
+
+      <hr class="mt-7" />
+      <!-- API Usage -->
+
+      <!-- API Keys -->
+      <div class="row mb-3">
+        <div class="col-sm-9">
+          <h2 class="m-0 py-2">API Keys</h2>
+        </div>
+        <div class="col-sm-3 text-md-end">
+          <a href="/app/settings/api/create_key" class="btn btn-white btn-sm">
+            <span class="fa-solid fa-plus"></span>
+            New
+          </a>
+        </div>
+      </div>
+      <p>
+        You do not have any API keys yet. If you would like to use the
+        Invoice-Generator.com API then you must create an API key.
+      </p>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

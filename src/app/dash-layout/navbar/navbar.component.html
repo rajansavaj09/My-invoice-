@@ -1,0 +1,278 @@
+<header
+  id="header"
+  class="navbar navbar-expand-lg navbar-shadow navbar-light bg-white p-lg-0"
+>
+  <div class="container">
+    <nav class="navbar-nav-wrap">
+      <a href="/" class="navbar-brand">
+        <img
+          src="https://cdn.invoice-generator.com/img/logo.1457551a.svg"
+          height="27"
+          alt="Invoice Generator"
+          class="d-theme-light-block"
+        />
+        <img
+          src="https://cdn.invoice-generator.com/img/logo-dark.7abde2d6.svg"
+          height="27"
+          alt="Invoice Generator"
+          class="d-theme-dark-block"
+        />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-nav-wrap-secondary-content d-none d-lg-flex">
+        <span
+          class="me-5"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          aria-label="Change Language"
+          data-bs-original-title="Change data"
+        >
+          <a
+            href="#"
+            class="nav-link fs-3"
+            data-bs-toggle="modal"
+            data-bs-target="#languageModal"
+          >
+            <span class="fas fa-language"></span>
+          </a>
+        </span>
+        <a
+          href="#"
+          class="nav-link me-5 fs-3 theme-toggle theme-toggle-dark-mode"
+          (click)="toggleTheme()"
+          *ngIf="themeService.getTheme() === 'dark'"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          aria-label="Enable Dark Mode"
+          data-bs-original-title="Enable Dark Mode"
+        >
+          <span class="fas fa-sun-bright"></span>
+        </a>
+        <a
+          href="#"
+          class="nav-link me-5 fs-3 theme-toggle theme-toggle-light-mode d-none"
+          (click)="toggleTheme()"
+          *ngIf="themeService.getTheme() === 'light'"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          aria-label="Enable Light Mode"
+          data-bs-original-title="Enable Light Mode"
+        >
+          <span class="fas fa-moon"></span>
+        </a>
+
+        <a
+          href="#"
+          class="nav-link me-5 fs-3 theme-toggle theme-toggle-dark-mode"
+          (click)="toggleTheme()"
+          *ngIf="themeService.getTheme() === 'light'"
+        >
+          <span class="fas fa-sun-bright"></span>
+        </a>
+        <a
+          href="#"
+          class="nav-link me-5 fs-3 theme-toggle theme-toggle-light-mode"
+          (click)="toggleTheme()"
+          *ngIf="themeService.getTheme() === 'dark'"
+        >
+          <span class="fas fa-moon"></span>
+        </a>
+
+        <a *ngIf="!isLoggedIn" href="/auth-layout/login" class="nav-link me-5">
+          {{ "signIn" | translate }}
+        </a>
+        <a *ngIf="!isLoggedIn"
+          href="/auth-layout/registrar"
+          class="btn btn-primary navbar-btn btn-sm"
+        >
+          {{ "signUp" | translate }}
+        </a>
+        <li *ngIf="isLoggedIn" class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="userDropdown"
+            data-bs-toggle="dropdown"
+          >
+            {{ email }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/app/my_account">My Account</a></li>
+            <li>
+              <a class="dropdown-item text-danger" href="#" (click)="logout()">Sign Out</a>
+            </li>
+          </ul>
+        </li>
+      </div>
+
+      <!-- Mobile view -->
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-lg-5">
+          <li class="nav-item px-lg-2" *ngIf="!isLoggedIn">
+            <a href="/dash-layout/help" class="nav-link">
+              {{ "help" | translate }}
+            </a>
+          </li>
+          <li class="nav-item px-lg-2" *ngIf="!isLoggedIn">
+            <a href="/dash-layout/history" class="nav-link">
+              {{ "history" | translate }}
+            </a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item px-lg-2">
+            <a href="/dash-layout/invoicing-guide" class="nav-link">
+              {{ "invoicingGuide" | translate }}
+            </a>
+          </li>
+          <li *ngIf="isLoggedIn" class="nav-item px-lg-2">
+            <a href="/dash-layout/my-invoices" class="nav-link active">
+              {{"myInvoices" | translate }} </a>
+          </li>
+          <li *ngIf="isLoggedIn" class="nav-item px-lg-2">
+            <a href="/dash-layout/settings" class="nav-link">
+              {{"settings" | translate}} </a>
+          </li>
+          <li *ngIf="isLoggedIn" class="nav-item px-lg-2">
+            <a href="/dash-layout/upgrade" class="btn btn-primary navbar-btn btn-sm">
+              <span class="fas fa-sparkles"></span>
+              {{"upgrade" | translate}} </a>
+          </li>
+          <li class="nav-item d-block d-lg-none">
+            <a
+              href="#"
+              class="nav-link"
+              data-bs-toggle="modal"
+              data-bs-target="#languageModal"
+            >
+              <span class="fas fa-language"></span>
+              {{ "changeLanguage" | translate }}
+            </a>
+          </li>
+          <li class="nav-item d-block d-lg-none">
+            <a href="#" class="nav-link theme-toggle theme-toggle-dark-mode">
+              <span class="fas fa-sun-bright"></span> Enable Dark Mode
+            </a>
+          </li>
+          <li class="nav-item d-block d-lg-none">
+            <a
+              href="#"
+              class="nav-link theme-toggle theme-toggle-light-mode d-none"
+            >
+              <span class="fas fa-moon"></span> Enable Light Mode
+            </a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item d-block d-lg-none">
+            <a href="/auth-layout/login" class="nav-link">
+              {{ "signIn" | translate }}
+            </a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item d-block d-lg-none">
+            <a href="/auth-layout/registrar" class="nav-link">
+              {{ "signUp" | translate }}
+            </a>
+          </li>
+          <!-- <li *ngIf="isLoggedIn" class="nav-item d-block d-lg-none dropdown">
+            <a
+              class="nav-link dropdown-toggle show"
+              href="#"
+              id="accountNavbarDropdown2"
+              data-bs-toggle="dropdown"
+            >
+              {{ email }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="accountNavbarDropdown2" data-bs-popper="static">
+              <li><a class="dropdown-item" href="/app/my_account">My Account</a></li>
+              <li>
+                <a class="dropdown-item text-danger" href="#" (click)="logout()">Sign Out</a>
+              </li>
+            </ul>
+          </li> -->
+          <li class="nav-item d-block d-lg-none dropdown">
+            <a class="nav-link dropdown-toggle show" href="#" id="accountNavbarDropdown2" data-bs-toggle="dropdown" aria-expanded="true">
+              {{ email }}
+            </a>
+
+            <ul class="dropdown-menu show" aria-labelledby="accountNavbarDropdown2" data-bs-popper="static">
+                <li>
+                    <a class="dropdown-item" href="/app/my_account">
+                        My Account
+                    </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item text-danger" href="#" (click)="logout()">
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
+        </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div
+  class="modal fade"
+  id="languageModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="languageModalLabel"
+  aria-modal="true"
+  style="display: none"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="languageModalLabel">Change Language</h5> -->
+        <h5 class="modal-title" id="languageModalLabel">
+          {{ "changeLanguage" | translate }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <nav class="nav flex-column flex-sm-row">
+          <a class="col-sm-4 nav-link" (click)="changeLanguage('hi')">
+            हिंदी
+          </a>
+          <a class="col-sm-4 nav-link" (click)="changeLanguage('gu')">
+            ગુજરાતી
+          </a>
+          <a class="col-sm-4 nav-link active" (click)="changeLanguage('en')">
+            English
+          </a>
+          <a class="col-sm-4 nav-link"> Español </a>
+          <a class="col-sm-4 nav-link"> Français </a>
+          <a class="col-sm-4 nav-link"> Bahasa Indonesia </a>
+          <a class="col-sm-4 nav-link"> Italiano </a>
+          <a class="col-sm-4 nav-link"> Nederlands </a>
+          <a class="col-sm-4 nav-link"> Norsk </a>
+          <a class="col-sm-4 nav-link"> Polski </a>
+          <a class="col-sm-4 nav-link"> Português </a>
+          <a class="col-sm-4 nav-link"> Română </a>
+          <a class="col-sm-4 nav-link"> Svenska </a>
+          <a class="col-sm-4 nav-link"> ภาษาไทย </a>
+          <a class="col-sm-4 nav-link"> Türkçe </a>
+          <a class="col-sm-4 nav-link"> Українська </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

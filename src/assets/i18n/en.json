@@ -1,0 +1,139 @@
+{
+  "changeLanguage": "Change Language",
+  "help": "Help",
+  "history": "History",
+  "invoicingGuide": "Invoicing Guide",
+  "upgrade":"Upgrade",
+  "settings":"Settings",
+  "myInvoices":"My Invoices", 
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "welcomeBack!": "Welcome Back!",
+  "createAFreeAccount": "Create a free account",
+  "gainAccessToMoreFeaturesWithAnInvoice-Generator.ComAccount.": "Gain access to more features with an Invoice-Generator.com account.",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "password": "Password",
+  "iAgreeToTheTermsOfService": "I agree to the Terms of Service",
+  "alreadyHaveAnAccount?": "Already have an account?",
+  "forgotPassword?": "Forgot password?",
+  "keepMeLoggedIn": "Keep me logged in",
+  "don'tHaveAnAccountYet?": "Don't have an account yet?",
+
+  "helpPage": {
+    "help": "Help",
+    "helpDetails": "Invoice Generator provides an invoice template that lets you make professional invoices in one-click. Generated invoices can be sent and paid online.",
+    "invoiceGenerator":"Why use Invoice Generator?",
+        "instantInvoices1":"Instant invoices",
+            "instantInvoices1-details":"We have developed the fastest way to make an invoice using our invoice template. You can make and download an invoice without creating account. If you want to send your invoice it is only one button press away from delivering an e-invoice to your client.",
+        "instantInvoices2":"Invoice from any device",
+            "instantInvoices2-details":"Invoice on-the-go from any device, desktop, tablet, or smartphone.",
+        "instantInvoices3":"Trusted by millions",
+            "instantInvoices3-details":"Every month millions of invoices are generated on Invoice Generator.",
+        "instantInvoices4":"100% FREE",
+            "instantInvoices4-details":"There are no limits. Use it as much as you like.",
+    "invoiceGenerator-paragraph":"Our objective at Invoice-Generator.com is to make invoicing as simple as possible. We built this invoice generator solely dedicated to this purpose. We want to give you the best possible invoicing experience, and hope it saves you from the many frustrations that come with invoicing.",
+    "titleInvoiceGenerator":"How do I use Invoice Generator?",
+    "makingInvoices":"Making Invoices",
+    "makingInvoices-paragraph-1":"Generating invoices is easy! Fill out the invoice template with all the details you want on your invoice. The invoice editor closely matches what the resulting invoice will look like. Once you have filled in the invoice template you are ready to download or send your invoice.",
+    "makingInvoices-paragraph-2":"The download invoice button will be disabled until you fill in your information and your client's information into the to/from fields.",
+    "sendingInvoices":"Sending Invoices",
+    "sendingInvoices-paragraph":"Invoices can be sent to customers with an Invoice-Generator.com account. Your invoices are stored securely in the cloud, and you can accept a variety of payment methods that are convenient for your customer",
+    "learnMore":"Learn More",
+
+    "payments":"Payments",
+    "payments-paragraph":"If you are using the send invoice feature, you can accept bank account and credit/debit card payments from your buyer. You are also able to add payment instructions to your invoice if you want to accept alternative payment methods.",
+    "downloadingInvoices":"Downloading Invoices",
+
+    "downloadingInvoices-paragraph1":"Click the",
+        "downloadInvoice":"Download Invoice",
+    "downloadingInvoices-paragraph2":" to download a PDF of your invoice. If you made a mistake, don't worry, you can go back and update the invoice by clicking",
+        "editThisInvoice":"Edit this invoice",
+    "downloadingInvoices-paragraph3":" If you do not see your invoice once you click download then you should check your Downloads folder.",
+
+    "savingInvoices":"Saving Invoices",
+    "savingInvoices-paragraph1":"Invoices that you download or send are auto-saved to your device's local storage. This allows you to go back and edit past invoices.",
+       
+        "savingInvoices2-paragraph1":" You can access past invoices on the",
+            "history":"History",
+        "savingInvoices2-paragraph2":"page. Click on a previously generated invoice to open it in the invoice editor. You can also export all of your invoices to a spreadsheet file by clicking the",
+            "export":"Export",
+        "savingInvoices2-paragraph3":"button.",
+        
+        "savingInvoices3-paragraph1":"Individual invoices can be deleted by hovering over the invoice and clicking the",
+            "x":"X",
+        "savingInvoices3-paragraph2":"button. Clicking",
+            "eraseEverything":"Erase Everything",
+        "savingInvoices3-paragraph3":"will erase all saved invoices and any customizations to the invoice template.",
+
+        "customizingTemplate":"Customizing the Invoice Template",
+            "customizingTemplate-paragraph1":"If you find yourself using Invoice Generator often, you can memorize your invoice template customizations. Just click",
+                "saveTemplate":"Save Template",
+            "customizingTemplate-paragraph2":"in the right sidebar after you have finished customizing your invoice template. Now every time you use Invoice Generator your personalized invoice template will be loaded.",
+
+        "invoiceTemplateRemember":"The invoice template will remember your:",
+            "fromAddress":"From Address",
+            "logo":"Logo",
+            "currency":"Currency",
+            "terms":"Terms",
+            "notes":"Notes",
+            "fieldTitles":"Field Titles",
+
+        "systemRequirements":"System Requirements",
+            "systemRequirements-paragraph1":"In order to use Invoice Generator you must use one of the following web browsers:",
+                "remember-1":"Google Chrome: latest two versions",
+                "remember-2":"Mozilla Firefox: latest two versions",
+                "remember-3":"Apple Safari: latest two versions",
+                "remember-4":"Microsoft Edge: latest two versions",
+                "remember-5":"Internet Explorer 11",
+            "systemRequirements-paragraph2":"Your browser must also have this configuration which any supported browser has out of the box:",
+                "option1":"Javascript enabled",
+                "option2":"Local storage enabled",
+                "option3":"TLS v1.2 or above",
+             
+            "title1":"Where does Invoice Generator store invoices?",
+            "title2":"Send Invoice feature",
+            "paragraph1":"If you have used the Send Invoice option then you or your recipient can retrieve the invoice at any time by",
+            "paragraph2":"signing in to Invoice-Generator.com",
+
+            "downloadInvoiceFeature":"Download Invoice feature",
+            "downloadInvoiceFeature-paragraph1":"Invoice Generator uses your web browser's local storage to remember your invoices without requiring you to create an account with us. We do not maintain any copies of your downloaded invoice on our servers. Clearing your browser history will clear all of your invoices on Invoice Generator and they cannot be recovered.",
+            "downloadInvoiceFeature-paragraph2":"If you use the Download Invoice option then please keep a backup of each invoice PDF you create, or use an Invoice-Generator.com account to store and send your invoice.",
+
+            "what'sNew":"What's new?",
+            "what'sNew-paragraph-1":"Read the",
+            "releaseNotes":"Release Notes",
+            "what'sNew-paragraph-2":"to see the latest invoicing features we've added.",
+
+            "invoiceGeneratorAPI":"Invoice Generator API",
+            "invoiceGeneratorAPI-paragraph-1":"Save yourself the hassle of setting up an invoice template and all of the frustration associated with generating PDFs. Our service gives you a clean interface for quick, attractive invoices generated from your code.",
+            "apiDocumentation":"API Documentation"
+
+
+  },     
+
+  "footer":{
+      "invoiceGenerator":"Use Invoice Generator",
+      "invoiceGenerator1":"Invoice Template",
+      "invoiceGenerator2":"Credit Note Template",
+      "invoiceGenerator3":"Quote Template",
+      "invoiceGenerator4":"Purchase Order Template",
+
+        "resources":"Resources",
+        "invoicingGuide":"Invoicing Guide",
+        "help":"Help",
+        "signIn":"Sign In",
+        "signUp":"Sign Up",
+        "releaseNotes":"Release Notes",
+        "developerAPI":"Developer API",
+        "Invoicing Guide":"Invoicing Guide",
+
+
+
+        "termsOfService":"Terms of Service",
+        "privacyPolicy":"Privacy Policy"
+
+
+  }
+}

@@ -1,0 +1,112 @@
+<!-- <div class="d-flex justify-content-center  ">
+    <p-card header="Login Form" class="card data">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="p-fluid">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" pInputText formControlName="username" placeholder="Enter your username" />
+                </div>
+                <div class="field">
+                    <label for="Password">Password</label>
+                    <input pInputText formControlName="password" placeholder="Enter your Password" />
+                </div>
+            </div>
+            <div class="">
+                <div class="button">
+                    <pButton type="submit" class="button" [raised]="true" label="Info" severity="info" pButton
+                        label="Login Now"></pButton>
+                </div>
+                <div>
+                    <p class="text-center register-test mt-3 mb-0">Don't have an account?
+                        <a href="auth-layout/ragistar" class="text-decoration-none">Register here</a>
+                    </p>
+                </div>
+            </div>
+
+        </form>
+    </p-card>
+</div> -->
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="text-center pt-5">
+            <a href="/">
+                <div class="d-theme-light-block">
+                    <img src="https://cdn.invoice-generator.com/img/logo.1457551a.svg" height="45"
+                        alt="Invoice Generator" class="mw-100">
+                </div>
+                <div class="d-theme-dark-block">
+                    <img src="https://cdn.invoice-generator.com/img/logo-dark.7abde2d6.svg" height="45"
+                        alt="Invoice Generator" class="mw-100">
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 my-5 card p-5">
+            <h1 class="display-4 text-center mb-3">
+               {{'signIn' | translate}}
+            </h1>
+
+            <p class="text-muted text-center mb-5">
+                {{'welcomeBack!'| translate }}
+            </p>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <!-- Email Address -->
+                <div class="form-group mb-3">
+                    <label class="form-label" for="inputEmail">
+                        {{'email' | translate}}
+                    </label>
+                    <input type="email" value="" formControlName="email" name="email" id="inputEmail"
+                        class="form-control" autocomplete="email" required="" autofocus="">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label" for="inputPassword">
+                                {{'password'|translate}}
+                            </label>
+                        </div>
+                        <div class="col-auto">
+                            <a href="/auth-layout/forgot-password" class="form-text small text-secondary">
+                                {{"forgotPassword?" | translate}}  
+                            </a>
+                        </div>
+                    </div>
+                    <input type="password" name="password" formControlName="password" id="inputPassword"
+                        class="form-control" autocomplete="current-password" required="">
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="_remember_me" id="login_form_rememberMe"
+                        checked="checked">
+                    <label class="form-check-label required" for="login_form_rememberMe">{{"keepMeLoggedIn" | translate}}</label>
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                    value="34b485000db611be6f5c3.lNVpEwRU1AKMt5BosY2QoWXS-IVH-A8dhqwxIelPjmM.7OcnY0gQvWzihOExhvnP5jG5i7Q1vVdN55tgTY4u2SL74kRZKR6tU_Tc1Q">
+
+                <button type="submit" class="btn btn-lg w-100 btn-primary mb-3 mt-5">
+                  {{ 'signIn' | translate }}
+                </button>
+
+                <div class="text-center mb-5">
+                    <a href="/auth/google/start" class="sign-in-with-google-btn">
+                        <img src="https://cdn.invoice-generator.com/img/sign-in-with-google.e9aa7f46.svg" height="45"
+                            class="img-responsive">
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <small class="text-secondary text-center fs-5">
+                       {{"don'tHaveAnAccountYet?" | translate}} <a href="/auth-layout/registrar">{{ 'signUp' | translate }}</a>
+                    </small>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
