@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InvoiceFormService } from '../services/invoice-form.service';
@@ -14,19 +14,20 @@ import { invoiceInterface } from '../interface/invoice-interface';
 export class DashLayoutComponent {
   previewImage: string | null = null;
   allInvoice: invoiceInterface = {}
-  // pdfShow: false;
   invoiceForm: FormGroup;
   subtotal = 0;
   total = 0;
   balanceDue = 0;
   amountPaid = 0;
   invoiceId: number = 0;
-
+  isLoggedIn =  false;
+  showPDF = false
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
     private invoiceFormService: InvoiceFormService,
     private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {
     this.invoiceForm = this.fb.group({
       imagePath: ['', Validators.required],
@@ -72,28 +73,22 @@ export class DashLayoutComponent {
   }
 
   ngOnInit(): void {
-    // this.authService.checkLoginStatus();
-
     this.route.paramMap.subscribe((param) => {
-      debugger
       this.invoiceId = Number(param.get('id'));
       if (this.invoiceId) {
         this.getById(this.invoiceId);
       }
     });
+    this.authService.checkLoginStatus();
+    this.authService.isLoggedIn.subscribe((status) => (this.isLoggedIn = status));
     // this.route.paramMap.subscribe((param) => {
     //   const idParam = param.get('id');
-    //   debugger
-    //   if (idParam) {
-    //     const id = Number(idParam);
-    //     if (!isNaN(id)) {
-    //       this.invoiceId = id;
-    //       this.getById(this.invoiceId);
-    //     } else {
-    //       console.error('Invalid invoice ID:', idParam);
-    //     }
+    //   console.log('Route Parameter (id):', idParam); // Debugging
+    //   this.invoiceId = Number(idParam); // Converts to number
+    //   if (!isNaN(this.invoiceId) && this.invoiceId > 0) {
+    //     this.getById(this.invoiceId);
     //   } else {
-    //     console.error('No invoice ID found in the route');
+    //     console.error('Invalid or missing invoice ID:', idParam);
     //   }
     // });
   }
@@ -111,6 +106,8 @@ export class DashLayoutComponent {
   }
 
   downloadPDF() {
+    debugger
+    this.cdr.detectChanges();
     const pdf = new jsPDF('p', 'pt', 'a4');
     const invoice = document.getElementById('invoices');
 
@@ -123,6 +120,7 @@ export class DashLayoutComponent {
       pdf.html(invoice, {
         callback: (doc) => {
           doc.save('invoice.pdf');
+          this.showPDF = false;
         },
         x: 0,
         y: 0,
@@ -133,6 +131,7 @@ export class DashLayoutComponent {
         },
       });
     }
+    this.showPDF = false;
   }
 
   onFileSelected(event: Event): void {
@@ -156,11 +155,38 @@ export class DashLayoutComponent {
   }
 
   onSubmit() {
-    console.log(this.invoiceForm.value);
-    alert('Invoice Submitted');
-    this.invoiceFormService.createInvoice(this.invoiceForm.value).subscribe(() => {
-      console.log('Invoice created successfully');
+    this.showPDF = true;
+    if (this.invoiceId > 0) {
+      debugger
+      const newData = {
+        id: this.invoiceId,
+        ...this.invoiceForm.value,
+        isLoggedIn: this.isLoggedIn
+      }
+      
+      this.invoiceFormService.updateInvoice(newData).subscribe({
+        next: () => {
+          alert('Update Invoice Successfully');
+        },
+        error: (er) => {
+          console.error(er)
+        }
+       
+      })
+    }else{
+      console.log(this.invoiceForm.value);
+       alert('Invoice Submitted');
+       const newData = {
+        isLoggedIn: this.isLoggedIn,
+        ...this.invoiceForm.value
+      }
+       this.invoiceFormService.createInvoice(newData).subscribe(() => {
+        this.downloadPDF()
+        console.log(newData,'Invoice created successfully');
     });
+    }
+   
+
   }
 
   createItem(): FormGroup {
@@ -207,57 +233,9 @@ export class DashLayoutComponent {
     });
   }
 
-
-  // getById(id:any){
-  //   this.invoiceFormService.getById(id).subscribe((data)=>{
-  //     this.allInvoice = data;
-  //     console.log(this.allInvoice,'data')
-  //     this.invoiceForm = this.fb.group({
-       
-  //       imagePath: [data,['imagePath']],
-  //       type: [data,['type']],
-  //       invoiceNo: [],
-  //       formName: [],
-  //       labelBillToMe: [],
-  //       WhoIsThisToValue: [],
-  //       labelShipTo: [],
-  //       optionalValue: [],
-  //       date: [],
-  //       DateValue: [],
-  //       paymentTerms: [],
-  //       paymentTermsValue: [],
-  //       dueDate: [],
-  //       dueDateValue: [],
-  //       poNumber: [],
-  //       poNumberValue: [],
-  //       labelItemName: [],
-  //       labelQuantity: [],
-  //       labelCost: [],
-  //       labelAmount: [],
-  //       items: this.fb.array([this.createItem()]),
-  //       labelNotes: [],
-  //       valueNotes: [],
-  //       labelTerms: [],
-  //       valueTerms: [],
-  //       labelSubtotal: [],
-  //       valueSubtotal: [],
-  //       labelDiscount: [],
-  //       valueDiscount: [],
-  //       labelTax: [],
-  //       valueTax: [],
-  //       labelShipping: [],
-  //       valueShipping: [],
-  //       labelTotal: [],
-  //       valueTotal: [],
-  //       labelAmountPaid: [],
-  //       valueAmountPaid: [],
-  //       labelBalanceDue: [],
-  //       valueBalanceDue: [],
-  //     });
-  //   })
-  // }
   getById(id: any) {
     this.invoiceFormService.getById(id).subscribe((data: invoiceInterface) => {
+      debugger
       console.log('Fetched Data:', data);
       this.allInvoice = data;
   
@@ -267,35 +245,35 @@ export class DashLayoutComponent {
         invoiceNo: data.invoiceNo,
         formName: data.formName ,
         labelBillToMe: data.labelBillToMe ,
-        WhoIsThisToValue: data.WhoIsThisToValue || '',
-        labelShipTo: data.labelShipTo || 'Ship To',
-        optionalValue: data.optionalValue || '',
-        date: data.date || 'Date',
-        DateValue: data.DateValue || '',
-        paymentTerms: data.paymentTerms || 'Payment Terms',
-        paymentTermsValue: data.paymentTermsValue || '',
-        dueDate: data.dueDate || 'Due Date',
-        dueDateValue: data.dueDateValue || '',
-        poNumber: data.poNumber || 'PO Number',
-        poNumberValue: data.poNumberValue || '',
-        labelNotes: data.labelNotes || 'Notes',
-        valueNotes: data.valueNotes || '',
-        labelTerms: data.labelTerms || 'Terms',
-        valueTerms: data.valueTerms || '',
-        labelSubtotal: data.labelSubtotal || 'Subtotal',
-        valueSubtotal: data.valueSubtotal || 0,
-        labelDiscount: data.labelDiscount || 'Discount',
-        valueDiscount: data.valueDiscount || 0,
-        labelTax: data.labelTax || 'Tax',
-        valueTax: data.valueTax || 0,
-        labelShipping: data.labelShipping || 'Shipping',
-        valueShipping: data.valueShipping || 0,
-        labelTotal: data.labelTotal || 'Total',
-        valueTotal: data.valueTotal || 0,
-        labelAmountPaid: data.labelAmountPaid || 'Amount Paid',
-        valueAmountPaid: data.valueAmountPaid || 0,
-        labelBalanceDue: data.labelBalanceDue || 'Balance Due',
-        valueBalanceDue: data.valueBalanceDue || 0,
+        WhoIsThisToValue: data.WhoIsThisToValue,
+        labelShipTo: data.labelShipTo,
+        optionalValue: data.optionalValue,
+        date: data.date,
+        DateValue: data.DateValue,
+        paymentTerms: data.paymentTerms,
+        paymentTermsValue: data.paymentTermsValue,
+        dueDate: data.dueDate,
+        dueDateValue: data.dueDateValue,
+        poNumber: data.poNumber,
+        poNumberValue: data.poNumberValue,
+        labelNotes: data.labelNotes,
+        valueNotes: data.valueNotes,
+        labelTerms: data.labelTerms,
+        valueTerms: data.valueTerms,
+        labelSubtotal: data.labelSubtotal,
+        valueSubtotal: data.valueSubtotal,
+        labelDiscount: data.labelDiscount,
+        valueDiscount: data.valueDiscount,
+        labelTax: data.labelTax,
+        valueTax: data.valueTax,
+        labelShipping: data.labelShipping,
+        valueShipping: data.valueShipping ,
+        labelTotal: data.labelTotal,
+        valueTotal: data.valueTotal,
+        labelAmountPaid: data.labelAmountPaid,
+        valueAmountPaid: data.valueAmountPaid,
+        labelBalanceDue: data.labelBalanceDue,
+        valueBalanceDue: data.valueBalanceDue ,
       });
   
       // Handle dynamic items array
@@ -304,17 +282,18 @@ export class DashLayoutComponent {
         data.items.forEach((item) => {
           this.items.push(
             this.fb.group({
-              description: item.description || '',
-              quantity: item.quantity || 0,
-              rate: item.rate || 0,
-              amount: item.amount || 0,
+              description: item.description,
+              quantity: item.quantity,
+              rate: item.rate,
+              amount: item.amount,
             })
           );
         });
       }
-  
       this.calculateTotals();
     });
+
+    
   }
   
 }

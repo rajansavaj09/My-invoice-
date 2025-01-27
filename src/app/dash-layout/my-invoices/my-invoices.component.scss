@@ -1,0 +1,44 @@
+/* Paid Status Styling */
+.status-paid {
+    background-color: #00c9a71a; /* Light green background */
+    color: #00c9a7; /* Bootstrap success green */
+    font-size: 0.875rem; /* Small text */
+    font-weight: 500; /* Medium weight */
+    border-radius: 5px; /* Rounded pill shape */
+    // padding: 0.3rem 0.8rem; /* Adjust padding */
+    // display: inline-flex;
+    // align-items: center;
+  }
+  
+  .status-paid::before {
+    content: '●';
+    font-size: 1rem; /* Dot size */
+    color: #00c9a7; /* Match green color */
+    // margin-right: 0.5rem;
+  }
+  
+  /* Unpaid Status Styling */
+  .status-unpaid {
+    background-color: #c900001a; /* Light orange background */
+    color: #ff0000; /* Orange color */
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 5px;
+    // padding: 0.3rem 0.8rem;
+    // display: inline-flex;
+    // align-items: center;
+  }
+  
+  .status-unpaid::before {
+    content: '●';
+    font-size: 1rem;
+    color: #ff0000;
+    // margin-right: 0.5rem;
+  }
+  
+
+
+
+  .icons-width{
+    width: 1.5rem;
+  }

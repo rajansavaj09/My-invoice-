@@ -25,13 +25,11 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
     this.getInvoice();
     this.authService.checkLoginStatus();
-
-    
   }
 
   getInvoice() {
     this.invoiceService.getInvoice().subscribe((data) => {
-      this.getInvoiceDetail = data;
+      this.getInvoiceDetail = data.filter((data:any)=>data.isLoggedIn === false);
       return this.getInvoiceDetail;
     });
   }

@@ -25,7 +25,7 @@ export class InvoiceFormService {
     return this.httpClient.delete(BASE_URL + `invoiceFormData/${id}`);
   }
 
-  getById(id:number): Observable<invoiceInterface>{
+  getById(id:number){
     return this.httpClient.get<invoiceInterface>(BASE_URL + `invoiceFormData/${id}`)
   } 
 

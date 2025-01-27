@@ -12,7 +12,7 @@ import { MyInvoicesComponent } from './my-invoices/my-invoices.component';
 
 const routes: Routes = [
   { path: '', component: DashLayoutComponent },
-  { path: 'edit-invoice/:id', component: DashLayoutComponent },
+  { path: 'edit/:id', component: DashLayoutComponent },
   // { path: 'navbar', component: NavbarComponent },
   { path: 'help', component: HelpComponent },
   { path: 'invoicing-guide', component: InvoicingGuideComponent },

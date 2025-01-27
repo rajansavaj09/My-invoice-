@@ -50,12 +50,10 @@
 //       valueAmountPaid?:0,
 //       labelBalanceDue?:"",
 //       valueBalanceDue?:0,
-      
-
 // }
 
 export interface invoiceInterface {
-      id?: 0;
+      id?: number;
       imagePath?: string;
       type?: string;
       invoiceNo?: number;

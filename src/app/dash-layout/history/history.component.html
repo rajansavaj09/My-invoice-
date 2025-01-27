@@ -81,7 +81,7 @@
                 class="ng-scope"
               >
                 <td>
-                  <a routerLink="/dash-layout/edit-invoice/{{Detail.id}}"
+                  <a routerLink="/dash-layout/edit/{{Detail.id}}"
                    class="btn btn-outline-secondary btn-sm ng-binding">
                     View 
                   </a>
@@ -93,10 +93,7 @@
                 <td class="ng-binding">{{Detail.dueDateValue}}</td>
                 <td class="text-end">{{Detail.valueBalanceDue}}</td>
                 <td class="text-end">
-                  <button
-                  (click)="deleteInvoice(Detail.id)"
-                    class="btn btn-link text-danger"
-                  > 
+                  <button (click)="deleteInvoice(Detail.id)" class="btn btn-link text-danger"> 
                   <span class="fas fa-trash"></span>
                 </button>
                 </td>

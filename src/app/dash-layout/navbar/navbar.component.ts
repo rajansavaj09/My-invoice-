@@ -13,10 +13,21 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent implements OnInit {
   isLoggedIn:boolean = false;
   email: string | null = null;
+  firstName:string | null = null ;
+  lastName:string | null = null;
+  // username
 
   constructor(private translate: TranslateService,public themeService: ThemeServiceService, private authService: AuthService) {
   }
   ngOnInit(): void {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users) {
+      this.firstName = users.firstName || null;
+      this.lastName = users.lastName || null;
+      this.email = users.email || null;
+    } else {
+      console.log('No user data found in localStorage');
+    }
     this.authService.isLoggedIn.subscribe((status) => (this.isLoggedIn = status));
     this.authService.email$.subscribe((email) => (this.email = email));
   }
